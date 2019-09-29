@@ -11,15 +11,13 @@ use Tests\TestCase as Base;
 abstract class TestCase extends Base
 {
 
-    protected function loggedInRequest(string $method, string $uri, array $parameters): TestResponse
+    protected function loggedInRequest(string $method, string $uri, array $parameters = []): TestResponse
     {
-        $app = $this->createApplication();
-
-        $userRepository = $app->make(UserContract::class);
+        $userRepository = $this->app->make(UserContract::class);
         $userRepository->addUser('jane', 'secret');
 
         /** @var Encrypter $encrypter */
-        $encrypter = $app->get(Encrypter::class);
+        $encrypter = $this->app->get(Encrypter::class);
         $secret = $encrypter->encrypt('secret', false);
 
         return $this->call($method, $uri, $parameters, ['auth' => $secret], [], [], null);

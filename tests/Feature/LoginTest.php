@@ -12,8 +12,7 @@ class LoginTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $app = $this->createApplication();
-        $this->cleanDatabase($app->get('redis'));
+        $this->cleanDatabase($this->app->get('redis'));
     }
 
     /**
@@ -21,7 +20,6 @@ class LoginTest extends TestCase
      */
     public function it_allows_user_to_log_in()
     {
-        $this->markTestSkipped('this is one also');
         $response = $this->get('/');
 
         $response->assertSeeText('You are not logged in!');
@@ -39,7 +37,6 @@ class LoginTest extends TestCase
      */
     public function it_shows_logged_in_username()
     {
-        $this->markTestSkipped('blade error and issue with view->share');
         $response = $this->loggedInRequest('GET', '/');
 
         $response->assertSeeText('jane');
