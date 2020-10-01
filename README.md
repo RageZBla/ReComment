@@ -1,6 +1,8 @@
 ReComment
 ===
 
+[![Build Status](https://travis-ci.com/RageZBla/ReComment.svg?branch=master)](https://travis-ci.com/RageZBla/ReComment)
+
 This is a small exercise to implement an highly scalable comment board using Redis and PHP and Laravel Framework.
 
 Features
