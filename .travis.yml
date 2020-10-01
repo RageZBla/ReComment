@@ -1,0 +1,24 @@
+dist: bionic
+sudo: false
+language: php
+
+services:
+  - redis
+  - mysql
+
+before_install:
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS laravel;'
+
+php:
+  - 7.4
+
+install:
+  - composer install
+  - php artisan key:generate --ansi --env=testing
+  - php artisan migrate --env=testing
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+
